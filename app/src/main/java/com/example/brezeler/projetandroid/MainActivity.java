@@ -8,6 +8,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
+import DAO.ItemDAO;
+import DAO.UsersDAO;
+import Model.Favori;
+import Model.Item;
+import Model.Users;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,6 +38,29 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        /*Test okai !
+        Users user = new Users("a", "toto", "jojo", "see");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date dueDate = null;
+        try {
+            dueDate = dateFormat.parse("1999-12-07 12:30:03");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Item item = new Item("lien","title",dueDate, "popo","source","description");
+        ItemDAO itemDAO = new ItemDAO(this);
+        UsersDAO usersDAO = new UsersDAO(this);
+        usersDAO.open();
+        itemDAO.open();
+        usersDAO.add(user);
+        itemDAO.add(item);
+        usersDAO.addFavori(item.getId(),user.getEmail());
+        TextView textView = (TextView)findViewById(R.id.sisi);
+        ArrayList<Item> tabitem = usersDAO.getFavori(user.getEmail());
+        textView.setText(tabitem.get(0).getTitle());
+        usersDAO.close();
+        itemDAO.close();*/
     }
 
     @Override
