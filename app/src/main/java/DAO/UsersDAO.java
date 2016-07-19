@@ -18,7 +18,7 @@ import Model.Users;
  */
 public class UsersDAO extends AbstractDAO <Users> {
 
-    private static final String TABLE_NAME = "item";
+    private static final String TABLE_NAME = "User";
     private static final String KEY_ID_USER = "id_user";
     private static final String KEY_PASSWORD = "password";
     private static final String KEY_NAME = "name";
@@ -32,7 +32,7 @@ public class UsersDAO extends AbstractDAO <Users> {
     public static final String DROP_TABLE = "DROP TABLE IF EXISTS "
             + TABLE_NAME +";";
 
-    private static final String TABLE_NAME2 = "favori";
+   /* private static final String TABLE_NAME2 = "favori";
     private static final String KEY_ID_ITEM = "id_item";
     private static final String KEY_ID_USER2 = "id_user";
     public static final String CREATE_TABLE2 = "CREATE TABLE "
@@ -40,7 +40,7 @@ public class UsersDAO extends AbstractDAO <Users> {
             + KEY_ID_USER2 + " TEXT, "
             + KEY_ID_ITEM + " TEXT);, ";
     public static final String DROP_TABLE2 = "DROP TABLE IF EXISTS "
-            + TABLE_NAME2 +";";
+            + TABLE_NAME2 +";";*/
 
     public UsersDAO(Context context) {
         super(context);
@@ -57,7 +57,7 @@ public class UsersDAO extends AbstractDAO <Users> {
         return i;
     }
 
-    public long addFavori(String idItem, String idUser){
+   /* public long addFavori(String idItem, String idUser){
 
 
         ContentValues contentValues = new ContentValues();
@@ -74,7 +74,7 @@ public class UsersDAO extends AbstractDAO <Users> {
         ArrayList<Item> itemTab = new ArrayList<>();
         String query = " SELECT * FROM "+ TABLE_NAME2 + "," + "item"  + " WHERE " + TABLE_NAME2 + ".id_item=item.id_item AND id_user=?";
         Cursor cursor = this.getSqliteDb().rawQuery(query,tab);
-       if (cursor != null){
+        if (cursor != null){
             while (cursor.moveToNext()){
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 Date dueDate = null;
@@ -95,6 +95,20 @@ public class UsersDAO extends AbstractDAO <Users> {
         }
         return itemTab;
 
+    }*/
+
+    public boolean getUser(String emailUser, String pass){
+        boolean answer = false;
+        String [] tab = {emailUser, pass} ;
+        String query = " SELECT * FROM" + TABLE_NAME + " WHERE id_user=.? AND password=?";
+        Cursor cursor = this.getSqliteDb().rawQuery(query,tab );
+        if(cursor.getCount() != 0){
+
+            answer = true;
+        }
+
+
+        return answer;
     }
 
 

@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import DAO.FavoriDAO;
 import DAO.ItemDAO;
 import DAO.UsersDAO;
 import Model.Favori;
@@ -39,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /*Test okai !
-        Users user = new Users("a", "toto", "jojo", "see");
+        //Test okai !
+        Users user = new Users("a@hot.fr", "toto", "NAME", "see");
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date dueDate = null;
         try {
@@ -51,16 +52,19 @@ public class MainActivity extends AppCompatActivity {
         Item item = new Item("lien","title",dueDate, "popo","source","description");
         ItemDAO itemDAO = new ItemDAO(this);
         UsersDAO usersDAO = new UsersDAO(this);
+        FavoriDAO favoriDAO = new FavoriDAO(this);
         usersDAO.open();
         itemDAO.open();
+        favoriDAO.open();
         usersDAO.add(user);
         itemDAO.add(item);
-        usersDAO.addFavori(item.getId(),user.getEmail());
+        favoriDAO.addFavori(item.getId(),user.getEmail());
         TextView textView = (TextView)findViewById(R.id.sisi);
-        ArrayList<Item> tabitem = usersDAO.getFavori(user.getEmail());
+        ArrayList<Item> tabitem = favoriDAO.getFavori(user.getEmail());
         textView.setText(tabitem.get(0).getTitle());
         usersDAO.close();
-        itemDAO.close();*/
+        itemDAO.close();
+        favoriDAO.close();
     }
 
     @Override

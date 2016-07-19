@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import DAO.FavoriDAO;
 import DAO.ItemDAO;
 import DAO.UsersDAO;
 import Model.Users;
@@ -23,7 +24,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(ItemDAO.CREATE_TABLE);
-        db.execSQL(UsersDAO.CREATE_TABLE2);
+        db.execSQL(UsersDAO.CREATE_TABLE);
+        db.execSQL(FavoriDAO.CREATE_TABLE2);
+
 
      ;
 
