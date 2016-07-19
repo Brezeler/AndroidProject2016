@@ -13,14 +13,16 @@ public class Item {
     private String id;
     private String source;
     private String description;
+    private String image;
 
-    public Item(String link, String title, Date pubDate, String id, String source, String description) {
+    public Item(String link, String title, Date pubDate, String id, String source, String description, String image) {
         this.link = link;
         this.title = title;
         this.pubDate = pubDate;
         this.id = id;
         this.source = source;
         this.description = description;
+        this.image = image;
     }
 
     public Item() {
@@ -73,5 +75,13 @@ public class Item {
 
     public void setSource(String source) {
         this.source = source;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

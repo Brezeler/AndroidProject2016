@@ -59,6 +59,8 @@ public class Parseur {
                                     currentEntry.setTitle(parser.nextText());
                                 }else if (name.equals("description")) {
                                     currentEntry.setDescription(parser.nextText());
+                                }else if(name.equals("enclosure")){
+                                    currentEntry.setImage(parser.getAttributeValue(null, "url"));
                                 }else if (name.equals("pubDate")){
                                     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                                     Date dueDate = null;

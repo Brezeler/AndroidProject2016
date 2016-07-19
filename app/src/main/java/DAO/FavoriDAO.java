@@ -61,7 +61,8 @@ public class FavoriDAO extends AbstractDAO <Favori> {
                         dueDate,
                         cursor.getString(0),
                         cursor.getString(4),
-                        cursor.getString(5)
+                        cursor.getString(5),
+                        cursor.getString(6)
                 );
                 itemTab.add(item);
             }

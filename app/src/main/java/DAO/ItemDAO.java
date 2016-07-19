@@ -24,6 +24,7 @@ public class ItemDAO extends AbstractDAO <Item> {
     private static final String KEY_SOURCE = "source";
     private static final String KEY_DESCRIPTION = "description";
     private static final String KEY_LINK = "link";
+    private static final String KEY_IMAGE = "image";
     public static final String CREATE_TABLE = "CREATE TABLE "
             + TABLE_NAME + " ("
             + KEY_ID_ITEM + " TEXT, "
@@ -31,7 +32,8 @@ public class ItemDAO extends AbstractDAO <Item> {
             + KEY_TITLE + " TEXT, "
             + KEY_SOURCE + " TEXT, "
             + KEY_DESCRIPTION + " TEXT, "
-            + KEY_PUBDATE + " DATE);";
+            + KEY_PUBDATE + " DATE,"
+            + KEY_IMAGE + " TEXT );";
     public static final String DROP_TABLE = "DROP TABLE IF EXISTS "
             + TABLE_NAME +";";
     public ItemDAO(Context context) {
@@ -48,13 +50,14 @@ public class ItemDAO extends AbstractDAO <Item> {
         //date
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         contentValues.put(KEY_PUBDATE,dateFormat.format(item.getPubDate()));
+        contentValues.put(KEY_IMAGE, item.getImage());
 
         long i = this.getSqliteDb().insert(TABLE_NAME, null, contentValues);
         return i;
     }
     public Item get(String id){
         Cursor cursor = this.getSqliteDb().query(TABLE_NAME,
-                new String[]{KEY_ID_ITEM, KEY_TITLE,KEY_LINK, KEY_PUBDATE, KEY_SOURCE, KEY_DESCRIPTION},
+                new String[]{KEY_ID_ITEM, KEY_TITLE,KEY_LINK, KEY_PUBDATE, KEY_SOURCE, KEY_DESCRIPTION, KEY_IMAGE},
                 KEY_ID_ITEM + "=?",
                 new String[]{String.valueOf(id)},
                 null,
@@ -78,7 +81,8 @@ public class ItemDAO extends AbstractDAO <Item> {
                     dueDate,
                     cursor.getString(0),
                     cursor.getString(4),
-                    cursor.getString(5)
+                    cursor.getString(5),
+                    cursor.getString(6)
             );
         }
         return item;
@@ -89,7 +93,7 @@ public class ItemDAO extends AbstractDAO <Item> {
         ArrayList <Item> list = new ArrayList<>();
 
         Cursor cursor = this.getSqliteDb().query(TABLE_NAME,
-                new String[]{KEY_ID_ITEM, KEY_TITLE,KEY_LINK, KEY_PUBDATE, KEY_SOURCE, KEY_DESCRIPTION},
+                new String[]{KEY_ID_ITEM, KEY_TITLE,KEY_LINK, KEY_PUBDATE, KEY_SOURCE, KEY_DESCRIPTION, KEY_IMAGE},
                 null,
                 null,
                 null,
@@ -114,7 +118,8 @@ public class ItemDAO extends AbstractDAO <Item> {
                         dueDate,
                         cursor.getString(0),
                         cursor.getString(4),
-                        cursor.getString(5)
+                        cursor.getString(5),
+                        cursor.getString(6)
                 );
                 list.add(item);
             }
